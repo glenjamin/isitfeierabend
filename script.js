@@ -1,9 +1,15 @@
 var today = new Date();
+var feierabend = new Date();
 
-var hours = today.getHours();
+feierabend.setHours(18);
+feierabend.setMinutes(0,0,0);
 
-document.addEventListener("DOMContentLoaded", function(event) {
-  if (hours >= 18) {
-    document.getElementById('isitfeierabend').innerHTML = 'JA! :)';
-  }
-});
+if (today.getHours() >= 18) {
+  document.addEventListener('DOMContentLoaded', setFeierabend);
+} else {
+  setTimeout(setFeierabend, feierabend - today);
+}
+
+function setFeierabend () {
+  document.getElementById('isitfeierabend').innerHTML = 'JA! :)';
+}
